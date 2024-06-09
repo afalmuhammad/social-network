@@ -10,6 +10,7 @@ from .serializers import UserSerializer, FriendRequestSerializer
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.views import APIView
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny
 from django.contrib.auth import authenticate
 
@@ -51,10 +52,16 @@ class LoginView(APIView):
         else:
             return Response({'error': 'Invalid credentials'}, status=401)
 
+
+class UserSearchPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 1000
 # Search Users
 class UserSearchView(generics.ListAPIView):
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
+    pagination_class = UserSearchPagination
 
     def get_queryset(self):
         keyword = self.request.query_params.get('keyword', '')

@@ -9,17 +9,20 @@ Python 3.6+
 
 Docker (optional for containerization)
 
-# clone the repository
-git clone https://github.com/yourusername/social-network.git
-
-cd social-network
-
 # Set Up Environment
 python3 -m venv env
 
 source env/bin/activate  # for Linux/Mac
 
 env\Scripts\activate  # for Windows
+
+# clone the repository
+
+git clone https://github.com/afalmuhammad/social-network.git
+
+cd social-network
+
+
 
 # Install Dependencies
 
